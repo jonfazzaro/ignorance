@@ -46,7 +46,7 @@ And that's more or less all you're left holding the bag for. I know, right?
 
 [Unity](http://msdn.microsoft.com/en-us/library/ff663144.aspx)
 
-### Microsoft Public License (MS-PL) ###
+## Microsoft Public License (MS-PL) ##
 
 This license governs use of the accompanying software. If you use the software, you
 accept this license. If you do not accept the license, do not use the software.
