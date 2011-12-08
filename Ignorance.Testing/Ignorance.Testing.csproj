@@ -161,6 +161,11 @@
     <Compile Include="Data\JobCandidate.cs">
       <DependentUpon>AdventureWorks.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\LinqToSql\AdventureWorks.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdventureWorks.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Data\Location.cs">
       <DependentUpon>AdventureWorks.tt</DependentUpon>
     </Compile>
@@ -295,14 +300,21 @@
     </Compile>
     <Compile Include="Domain\ContactService.cs" />
     <Compile Include="Domain\DepartmentService.cs" />
-    <Compile Include="IncompleteWorkTest.cs" />
+    <Compile Include="Tests\UnityConfiguration.cs" />
+    <Compile Include="Tests\When_work_is_not_saved.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="ServiceTest.cs" />
+    <Compile Include="Tests\When_an_entity_is_added_and_saved.cs" />
+    <Compile Include="Tests\When_a_Service_is_created_without_a_Work.cs" />
+    <Compile Include="Tests\When_a_Service_creates_an_entity.cs" />
+    <Compile Include="Tests\When_a_Service_deletes_an_entity.cs" />
+    <Compile Include="Tests\When_a_Service_saves_an_entity.cs" />
+    <Compile Include="Tests\ServiceBehaviorTest.cs" />
+    <Compile Include="Tests\When_an_entity_is_updated_outside_of_a_Work.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Data\EntityFramework\AdventureWorks.edmx">
@@ -319,6 +331,14 @@
     <None Include="Data\AdventureWorks.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AdventureWorks.cs</LastGenOutput>
+    </None>
+    <None Include="Data\LinqToSql\AdventureWorks.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>AdventureWorks.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Ignorance.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -348,8 +368,11 @@
       <Name>Ignorance</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Data\LinqToSql\" />
+    <None Include="Data\LinqToSql\AdventureWorks.dbml.layout">
+      <DependentUpon>AdventureWorks.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Ignorance.Testing
 {
     [TestClass]
-    public class IncompleteWork
+    public class When_work_is_not_saved
     {
         public short TestDepartmentID { get; set; }
 
@@ -32,10 +32,10 @@ namespace Ignorance.Testing
 
 
         [TestMethod]
-        public void IncompleteAddTest()
+        public void added_entities_should_not_persist()
         {
             var guidName = Guid.NewGuid().ToString();
-            // using Ignorance/Service API, call Update on the record
+            // using Service API, Add a record
             using (var work = Ignorance.Create.Work())
             {
                 var s = new DepartmentService(work);
@@ -55,9 +55,9 @@ namespace Ignorance.Testing
         }
 
         [TestMethod]
-        public void IncompleteUpdateTest()
+        public void changes_to_entities_should_not_persist()
         {
-            // using Ignorance/Service API, call Update on the record
+            // using Service API, call Update on the record
             using (var work = Ignorance.Create.Work())
             {
                 var s = new DepartmentService(work);
@@ -77,9 +77,9 @@ namespace Ignorance.Testing
         }
 
         [TestMethod]
-        public void IncompleteDeleteTest()
+        public void entities_should_not_be_deleted_from_storage()
         {
-            // using Ignorance/Service API, call Delete on the record
+            // using Service API, call Delete on the record
             using (var work = Ignorance.Create.Work())
             {
                 var s = new DepartmentService(work);

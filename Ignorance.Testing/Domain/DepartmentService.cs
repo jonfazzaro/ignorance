@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Ignorance.Domain;
 using Ignorance.Testing.Data;
 
@@ -6,7 +7,7 @@ namespace Ignorance.Testing.Domain
 {
     public class DepartmentService : Service<Department>
     {
-        public DepartmentService(IWork work) : base(work) { }
+        public DepartmentService(IWork work = null) : base(work) { }
 
         protected override void OnDeleting(Department entity)
         {
@@ -29,6 +30,11 @@ namespace Ignorance.Testing.Domain
         public Department GetByID(short id)
         {
             return GetStore().One(p => p.DepartmentID == id);
+        }
+
+        public Department GetFirst()
+        {
+            return GetStore().All().First();
         }
     }
 }

@@ -34,6 +34,10 @@ namespace Ignorance
                 }
                 return _container;
             }
+            set
+            {
+                _container = value;
+            }
         }
 
         /// <summary>

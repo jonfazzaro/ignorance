@@ -172,6 +172,7 @@ namespace Ignorance.Domain
         public virtual void Delete(T entity)
         {
             var store = GetStore();
+            store.Attach(entity);
             store.Remove(entity);
         }
         
