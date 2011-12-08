@@ -15,9 +15,8 @@ namespace Ignorance.Testing.Tests
         public void Load_EntityFramework_container()
         {
             var container = new UnityContainer()
-                .RegisterType(typeof(IStore<>), typeof(Ignorance.EntityFramework.Store<>))
-                .RegisterType<IWork, Ignorance.EntityFramework.Work>(
-                    new InjectionConstructor(typeof(AdventureWorksEntities)));
+                .RegisterType<IWork, Ignorance.EntityFramework.Work>()
+                .RegisterType(typeof(IStore<>), typeof(Ignorance.EntityFramework.Store<>));
 
             Create.Container = (UnityContainer)container;
 
@@ -35,10 +34,9 @@ namespace Ignorance.Testing.Tests
             // TODO: get the map filename
 
             var container = new UnityContainer()
-                .RegisterType<AdventureWorksDataContext>(
-                    new InjectionConstructor(l2sConnectionString /*, mappingSource*/))
                 .RegisterType<IWork, Ignorance.LinqToSql.Work>(
-                    new InjectionConstructor(typeof(AdventureWorksDataContext)))
+                    new InjectionConstructor(new ParameterOverride("context", 
+                        new AdventureWorksDataContext(l2sConnectionString))))
                 .RegisterType(typeof(IStore<>), typeof(Ignorance.LinqToSql.Store<>));
 
             Create.Container = (UnityContainer)container;

@@ -300,7 +300,9 @@
     </Compile>
     <Compile Include="Domain\ContactService.cs" />
     <Compile Include="Domain\DepartmentService.cs" />
-    <Compile Include="Tests\UnityConfiguration.cs" />
+    <Compile Include="Tests\UnityConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\When_work_is_not_saved.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -337,9 +339,7 @@
       <LastGenOutput>AdventureWorks.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Ignorance.orderedtest">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Ignorance.orderedtest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
