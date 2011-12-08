@@ -75,7 +75,7 @@ namespace Ignorance.Testing
         }
 
         [TestMethod]
-        public void DeletingTest()
+        public void OnDeletingTest()
         {
             using (var work = Ignorance.Create.Work())
             {
@@ -87,5 +87,12 @@ namespace Ignorance.Testing
                 work.Save();
             }
         }
+
+
+        [TestMethod]
+        public void DeleteTest()
+        {
+        }
+
     }
 }
