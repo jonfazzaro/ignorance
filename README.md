@@ -1,6 +1,6 @@
 ![ignorance](http://dl.dropbox.com/u/3057627/ignorance/ignorance-small.png)
 
-<h1>A little <strong>Domain Driven Development</strong> framework that embodies Persistence Ignorance and features those <em>Unit of Work</em>, <em>Repository</em>, and <em>Inversion of Control</em> patterns you keep hearing so much about.</h1>
+<h1>A little <strong>Persistence Ignorance</strong> framework that features those <em>Unit of Work</em>, <em>Repository</em>, and <em>Inversion of Control</em> patterns you keep hearing so much about.</h1>
 
 <p>Only, now you're not pecking them out and maintaining them in your application code, because <strong><em>Ignorance</em> already did that</strong>.</p>
 
