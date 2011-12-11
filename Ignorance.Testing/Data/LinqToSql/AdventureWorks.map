@@ -1,0 +1,946 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="AdventureWorks" xmlns="http://schemas.microsoft.com/linqtosql/mapping/2007">
+  <!--<Table Name="Person.Address" Member="Person_Address">
+    <Type Name="Person_Address">
+      <Column Name="AddressID" Member="AddressID" Storage="_AddressID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="AddressLine1" Member="AddressLine1" Storage="_AddressLine1" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressLine2" Member="AddressLine2" Storage="_AddressLine2" DbType="NVarChar(60)" />
+      <Column Name="City" Member="City" Storage="_City" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="StateProvinceID" Member="StateProvinceID" Storage="_StateProvinceID" DbType="Int NOT NULL" />
+      <Column Name="PostalCode" Member="PostalCode" Storage="_PostalCode" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_EmployeeAddress_Address_AddressID" Member="HumanResources_EmployeeAddress" Storage="_HumanResources_EmployeeAddress" ThisKey="AddressID" OtherKey="AddressID" DeleteRule="NO ACTION" />
+      <Association Name="FK_Address_StateProvince_StateProvinceID" Member="Person_StateProvince" Storage="_Person_StateProvince" ThisKey="StateProvinceID" OtherKey="StateProvinceID" IsForeignKey="true" />
+      <Association Name="FK_VendorAddress_Address_AddressID" Member="Purchasing_VendorAddress" Storage="_Purchasing_VendorAddress" ThisKey="AddressID" OtherKey="AddressID" DeleteRule="NO ACTION" />
+      <Association Name="FK_CustomerAddress_Address_AddressID" Member="Sales_CustomerAddress" Storage="_Sales_CustomerAddress" ThisKey="AddressID" OtherKey="AddressID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesOrderHeader_Address_BillToAddressID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="AddressID" OtherKey="BillToAddressID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesOrderHeader_Address_ShipToAddressID" Member="Address" Storage="_Address" ThisKey="AddressID" OtherKey="ShipToAddressID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Person.AddressType" Member="Person_AddressType">
+    <Type Name="Person_AddressType">
+      <Column Name="AddressTypeID" Member="AddressTypeID" Storage="_AddressTypeID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_VendorAddress_AddressType_AddressTypeID" Member="Purchasing_VendorAddress" Storage="_Purchasing_VendorAddress" ThisKey="AddressTypeID" OtherKey="AddressTypeID" DeleteRule="NO ACTION" />
+      <Association Name="FK_CustomerAddress_AddressType_AddressTypeID" Member="Sales_CustomerAddress" Storage="_Sales_CustomerAddress" ThisKey="AddressTypeID" OtherKey="AddressTypeID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AWBuildVersion" Member="AWBuildVersion">
+    <Type Name="AWBuildVersion">
+      <Column Name="SystemInformationID" Member="SystemInformationID" Storage="_SystemInformationID" DbType="TinyInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Database Version" Member="DatabaseVersion" Storage="_DatabaseVersion" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="VersionDate" Member="VersionDate" Storage="_VersionDate" DbType="DateTime NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+    </Type>
+  </Table>
+  <Table Name="Production.BillOfMaterials" Member="Production_BillOfMaterials">
+    <Type Name="Production_BillOfMaterials">
+      <Column Name="BillOfMaterialsID" Member="BillOfMaterialsID" Storage="_BillOfMaterialsID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ProductAssemblyID" Member="ProductAssemblyID" Storage="_ProductAssemblyID" DbType="Int" />
+      <Column Name="ComponentID" Member="ComponentID" Storage="_ComponentID" DbType="Int NOT NULL" />
+      <Column Name="StartDate" Member="StartDate" Storage="_StartDate" DbType="DateTime NOT NULL" />
+      <Column Name="EndDate" Member="EndDate" Storage="_EndDate" DbType="DateTime" />
+      <Column Name="UnitMeasureCode" Member="UnitMeasureCode" Storage="_UnitMeasureCode" DbType="NChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="BOMLevel" Member="BOMLevel" Storage="_BOMLevel" DbType="SmallInt NOT NULL" />
+      <Column Name="PerAssemblyQty" Member="PerAssemblyQty" Storage="_PerAssemblyQty" DbType="Decimal(8,2) NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_BillOfMaterials_Product_ComponentID" Member="Production_Product" Storage="_Production_Product" ThisKey="ComponentID" OtherKey="ProductID" IsForeignKey="true" />
+      <Association Name="FK_BillOfMaterials_Product_ProductAssemblyID" Member="ProductAssembly" Storage="_ProductAssembly" ThisKey="ProductAssemblyID" OtherKey="ProductID" IsForeignKey="true" />
+      <Association Name="FK_BillOfMaterials_UnitMeasure_UnitMeasureCode" Member="Production_UnitMeasure" Storage="_Production_UnitMeasure" ThisKey="UnitMeasureCode" OtherKey="UnitMeasureCode" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Person.Contact" Member="Person_Contact">
+    <Type Name="Person_Contact">
+      <Column Name="ContactID" Member="ContactID" Storage="_ContactID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="NameStyle" Member="NameStyle" Storage="_NameStyle" DbType="Bit NOT NULL" />
+      <Column Name="Title" Member="Title" Storage="_Title" DbType="NVarChar(8)" />
+      <Column Name="FirstName" Member="FirstName" Storage="_FirstName" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleName" Member="MiddleName" Storage="_MiddleName" DbType="NVarChar(50)" />
+      <Column Name="LastName" Member="LastName" Storage="_LastName" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Suffix" Member="Suffix" Storage="_Suffix" DbType="NVarChar(10)" />
+      <Column Name="EmailAddress" Member="EmailAddress" Storage="_EmailAddress" DbType="NVarChar(50)" />
+      <Column Name="EmailPromotion" Member="EmailPromotion" Storage="_EmailPromotion" DbType="Int NOT NULL" />
+      <Column Name="Phone" Member="Phone" Storage="_Phone" DbType="NVarChar(25)" />
+      <Column Name="PasswordHash" Member="PasswordHash" Storage="_PasswordHash" DbType="VarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordSalt" Member="PasswordSalt" Storage="_PasswordSalt" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="AdditionalContactInfo" Member="AdditionalContactInfo" Storage="_AdditionalContactInfo" DbType="Xml" UpdateCheck="Never" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Employee_Contact_ContactID" Member="HumanResources_Employee" Storage="_HumanResources_Employee" ThisKey="ContactID" OtherKey="ContactID" DeleteRule="NO ACTION" />
+      <Association Name="FK_VendorContact_Contact_ContactID" Member="Purchasing_VendorContact" Storage="_Purchasing_VendorContact" ThisKey="ContactID" OtherKey="ContactID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ContactCreditCard_Contact_ContactID" Member="Sales_ContactCreditCard" Storage="_Sales_ContactCreditCard" ThisKey="ContactID" OtherKey="ContactID" DeleteRule="NO ACTION" />
+      <Association Name="FK_Individual_Contact_ContactID" Member="Sales_Individual" Storage="_Sales_Individual" ThisKey="ContactID" OtherKey="ContactID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesOrderHeader_Contact_ContactID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="ContactID" OtherKey="ContactID" DeleteRule="NO ACTION" />
+      <Association Name="FK_StoreContact_Contact_ContactID" Member="Sales_StoreContact" Storage="_Sales_StoreContact" ThisKey="ContactID" OtherKey="ContactID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.ContactCreditCard" Member="Sales_ContactCreditCard">
+    <Type Name="Sales_ContactCreditCard">
+      <Column Name="ContactID" Member="ContactID" Storage="_ContactID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="CreditCardID" Member="CreditCardID" Storage="_CreditCardID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ContactCreditCard_Contact_ContactID" Member="Person_Contact" Storage="_Person_Contact" ThisKey="ContactID" OtherKey="ContactID" IsForeignKey="true" />
+      <Association Name="FK_ContactCreditCard_CreditCard_CreditCardID" Member="Sales_CreditCard" Storage="_Sales_CreditCard" ThisKey="CreditCardID" OtherKey="CreditCardID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Person.ContactType" Member="Person_ContactType">
+    <Type Name="Person_ContactType">
+      <Column Name="ContactTypeID" Member="ContactTypeID" Storage="_ContactTypeID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_VendorContact_ContactType_ContactTypeID" Member="Purchasing_VendorContact" Storage="_Purchasing_VendorContact" ThisKey="ContactTypeID" OtherKey="ContactTypeID" DeleteRule="NO ACTION" />
+      <Association Name="FK_StoreContact_ContactType_ContactTypeID" Member="Sales_StoreContact" Storage="_Sales_StoreContact" ThisKey="ContactTypeID" OtherKey="ContactTypeID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Person.CountryRegion" Member="Person_CountryRegion">
+    <Type Name="Person_CountryRegion">
+      <Column Name="CountryRegionCode" Member="CountryRegionCode" Storage="_CountryRegionCode" DbType="NVarChar(3) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_StateProvince_CountryRegion_CountryRegionCode" Member="Person_StateProvince" Storage="_Person_StateProvince" ThisKey="CountryRegionCode" OtherKey="CountryRegionCode" DeleteRule="NO ACTION" />
+      <Association Name="FK_CountryRegionCurrency_CountryRegion_CountryRegionCode" Member="Sales_CountryRegionCurrency" Storage="_Sales_CountryRegionCurrency" ThisKey="CountryRegionCode" OtherKey="CountryRegionCode" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.CountryRegionCurrency" Member="Sales_CountryRegionCurrency">
+    <Type Name="Sales_CountryRegionCurrency">
+      <Column Name="CountryRegionCode" Member="CountryRegionCode" Storage="_CountryRegionCode" DbType="NVarChar(3) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="CurrencyCode" Member="CurrencyCode" Storage="_CurrencyCode" DbType="NChar(3) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_CountryRegionCurrency_CountryRegion_CountryRegionCode" Member="Person_CountryRegion" Storage="_Person_CountryRegion" ThisKey="CountryRegionCode" OtherKey="CountryRegionCode" IsForeignKey="true" />
+      <Association Name="FK_CountryRegionCurrency_Currency_CurrencyCode" Member="Sales_Currency" Storage="_Sales_Currency" ThisKey="CurrencyCode" OtherKey="CurrencyCode" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.CreditCard" Member="Sales_CreditCard">
+    <Type Name="Sales_CreditCard">
+      <Column Name="CreditCardID" Member="CreditCardID" Storage="_CreditCardID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="CardType" Member="CardType" Storage="_CardType" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CardNumber" Member="CardNumber" Storage="_CardNumber" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="ExpMonth" Member="ExpMonth" Storage="_ExpMonth" DbType="TinyInt NOT NULL" />
+      <Column Name="ExpYear" Member="ExpYear" Storage="_ExpYear" DbType="SmallInt NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ContactCreditCard_CreditCard_CreditCardID" Member="Sales_ContactCreditCard" Storage="_Sales_ContactCreditCard" ThisKey="CreditCardID" OtherKey="CreditCardID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesOrderHeader_CreditCard_CreditCardID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="CreditCardID" OtherKey="CreditCardID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.Culture" Member="Production_Culture">
+    <Type Name="Production_Culture">
+      <Column Name="CultureID" Member="CultureID" Storage="_CultureID" DbType="NChar(6) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductModelProductDescriptionCulture_Culture_CultureID" Member="Production_ProductModelProductDescriptionCulture" Storage="_Production_ProductModelProductDescriptionCulture" ThisKey="CultureID" OtherKey="CultureID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.Currency" Member="Sales_Currency">
+    <Type Name="Sales_Currency">
+      <Column Name="CurrencyCode" Member="CurrencyCode" Storage="_CurrencyCode" DbType="NChar(3) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_CountryRegionCurrency_Currency_CurrencyCode" Member="Sales_CountryRegionCurrency" Storage="_Sales_CountryRegionCurrency" ThisKey="CurrencyCode" OtherKey="CurrencyCode" DeleteRule="NO ACTION" />
+      <Association Name="FK_CurrencyRate_Currency_FromCurrencyCode" Member="Sales_CurrencyRate" Storage="_Sales_CurrencyRate" ThisKey="CurrencyCode" OtherKey="FromCurrencyCode" DeleteRule="NO ACTION" />
+      <Association Name="FK_CurrencyRate_Currency_ToCurrencyCode" Member="CurrencyCodeSales_CurrencyRate" Storage="_CurrencyCodeSales_CurrencyRate" ThisKey="CurrencyCode" OtherKey="ToCurrencyCode" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.CurrencyRate" Member="Sales_CurrencyRate">
+    <Type Name="Sales_CurrencyRate">
+      <Column Name="CurrencyRateID" Member="CurrencyRateID" Storage="_CurrencyRateID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="CurrencyRateDate" Member="CurrencyRateDate" Storage="_CurrencyRateDate" DbType="DateTime NOT NULL" />
+      <Column Name="FromCurrencyCode" Member="FromCurrencyCode" Storage="_FromCurrencyCode" DbType="NChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="ToCurrencyCode" Member="ToCurrencyCode" Storage="_ToCurrencyCode" DbType="NChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="AverageRate" Member="AverageRate" Storage="_AverageRate" DbType="Money NOT NULL" />
+      <Column Name="EndOfDayRate" Member="EndOfDayRate" Storage="_EndOfDayRate" DbType="Money NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_CurrencyRate_Currency_FromCurrencyCode" Member="Sales_Currency" Storage="_Sales_Currency" ThisKey="FromCurrencyCode" OtherKey="CurrencyCode" IsForeignKey="true" />
+      <Association Name="FK_CurrencyRate_Currency_ToCurrencyCode" Member="ToCurrencyCodeSales_Currency" Storage="_ToCurrencyCodeSales_Currency" ThisKey="ToCurrencyCode" OtherKey="CurrencyCode" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_CurrencyRate_CurrencyRateID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="CurrencyRateID" OtherKey="CurrencyRateID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.Customer" Member="Sales_Customer">
+    <Type Name="Sales_Customer">
+      <Column Name="CustomerID" Member="CustomerID" Storage="_CustomerID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="TerritoryID" Member="TerritoryID" Storage="_TerritoryID" DbType="Int" />
+      <Column Name="AccountNumber" Member="AccountNumber" Storage="_AccountNumber" DbType="VarChar(10) NOT NULL" CanBeNull="false" Expression="(isnull('AW'+[dbo].[ufnLeadingZeros]([CustomerID]),''))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="CustomerType" Member="CustomerType" Storage="_CustomerType" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Customer_SalesTerritory_TerritoryID" Member="Sales_SalesTerritory" Storage="_Sales_SalesTerritory" ThisKey="TerritoryID" OtherKey="TerritoryID" IsForeignKey="true" />
+      <Association Name="FK_CustomerAddress_Customer_CustomerID" Member="Sales_CustomerAddress" Storage="_Sales_CustomerAddress" ThisKey="CustomerID" OtherKey="CustomerID" DeleteRule="NO ACTION" />
+      <Association Name="FK_Individual_Customer_CustomerID" Member="Sales_Individual" Storage="_Sales_Individual" ThisKey="CustomerID" OtherKey="CustomerID" DeleteRule="NO ACTION" IsUnique="true" />
+      <Association Name="FK_SalesOrderHeader_Customer_CustomerID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="CustomerID" OtherKey="CustomerID" DeleteRule="NO ACTION" />
+      <Association Name="FK_Store_Customer_CustomerID" Member="Sales_Store" Storage="_Sales_Store" ThisKey="CustomerID" OtherKey="CustomerID" DeleteRule="NO ACTION" IsUnique="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.CustomerAddress" Member="Sales_CustomerAddress">
+    <Type Name="Sales_CustomerAddress">
+      <Column Name="CustomerID" Member="CustomerID" Storage="_CustomerID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="AddressID" Member="AddressID" Storage="_AddressID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="AddressTypeID" Member="AddressTypeID" Storage="_AddressTypeID" DbType="Int NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_CustomerAddress_Address_AddressID" Member="Person_Address" Storage="_Person_Address" ThisKey="AddressID" OtherKey="AddressID" IsForeignKey="true" />
+      <Association Name="FK_CustomerAddress_AddressType_AddressTypeID" Member="Person_AddressType" Storage="_Person_AddressType" ThisKey="AddressTypeID" OtherKey="AddressTypeID" IsForeignKey="true" />
+      <Association Name="FK_CustomerAddress_Customer_CustomerID" Member="Sales_Customer" Storage="_Sales_Customer" ThisKey="CustomerID" OtherKey="CustomerID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DatabaseLog" Member="DatabaseLog">
+    <Type Name="DatabaseLog">
+      <Column Name="DatabaseLogID" Member="DatabaseLogID" Storage="_DatabaseLogID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="PostTime" Member="PostTime" Storage="_PostTime" DbType="DateTime NOT NULL" />
+      <Column Name="DatabaseUser" Member="DatabaseUser" Storage="_DatabaseUser" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Event" Member="Event" Storage="_Event" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Schema" Member="Schema" Storage="_Schema" DbType="NVarChar(128)" />
+      <Column Name="Object" Member="Object" Storage="_Object" DbType="NVarChar(128)" />
+      <Column Name="TSQL" Member="TSQL" Storage="_TSQL" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="XmlEvent" Member="XmlEvent" Storage="_XmlEvent" DbType="Xml NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+    </Type>
+  </Table>-->
+  <Table Name="HumanResources.Department" Member="Ignorance.Testing.Data.Department">
+    <Type Name="Ignorance.Testing.Data.Department">
+      <Column Name="DepartmentID" Member="DepartmentID" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name"  DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GroupName" Member="GroupName" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate"  DbType="DateTime NOT NULL" />
+      <!--<Association Name="FK_EmployeeDepartmentHistory_Department_DepartmentID" Member="HumanResources_EmployeeDepartmentHistory" Storage="_HumanResources_EmployeeDepartmentHistory" ThisKey="DepartmentID" OtherKey="DepartmentID" DeleteRule="NO ACTION" />-->
+    </Type>
+  </Table>
+  <!--<Table Name="Production.Document" Member="Production_Document">
+    <Type Name="Production_Document">
+      <Column Name="DocumentID" Member="DocumentID" Storage="_DocumentID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Title" Member="Title" Storage="_Title" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FileName" Member="FileName" Storage="_FileName" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="FileExtension" Member="FileExtension" Storage="_FileExtension" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Revision" Member="Revision" Storage="_Revision" DbType="NChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ChangeNumber" Member="ChangeNumber" Storage="_ChangeNumber" DbType="Int NOT NULL" />
+      <Column Name="Status" Member="Status" Storage="_Status" DbType="TinyInt NOT NULL" />
+      <Column Name="DocumentSummary" Member="DocumentSummary" Storage="_DocumentSummary" DbType="NVarChar(MAX)" UpdateCheck="Never" />
+      <Column Name="Document" Member="Document" Storage="_Document" DbType="VarBinary(MAX)" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductDocument_Document_DocumentID" Member="Production_ProductDocument" Storage="_Production_ProductDocument" ThisKey="DocumentID" OtherKey="DocumentID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="HumanResources.Employee" Member="HumanResources_Employee">
+    <Type Name="HumanResources_Employee">
+      <Column Name="EmployeeID" Member="EmployeeID" Storage="_EmployeeID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="NationalIDNumber" Member="NationalIDNumber" Storage="_NationalIDNumber" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactID" Member="ContactID" Storage="_ContactID" DbType="Int NOT NULL" />
+      <Column Name="LoginID" Member="LoginID" Storage="_LoginID" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="ManagerID" Member="ManagerID" Storage="_ManagerID" DbType="Int" />
+      <Column Name="Title" Member="Title" Storage="_Title" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Member="BirthDate" Storage="_BirthDate" DbType="DateTime NOT NULL" />
+      <Column Name="MaritalStatus" Member="MaritalStatus" Storage="_MaritalStatus" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Member="Gender" Storage="_Gender" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="HireDate" Member="HireDate" Storage="_HireDate" DbType="DateTime NOT NULL" />
+      <Column Name="SalariedFlag" Member="SalariedFlag" Storage="_SalariedFlag" DbType="Bit NOT NULL" />
+      <Column Name="VacationHours" Member="VacationHours" Storage="_VacationHours" DbType="SmallInt NOT NULL" />
+      <Column Name="SickLeaveHours" Member="SickLeaveHours" Storage="_SickLeaveHours" DbType="SmallInt NOT NULL" />
+      <Column Name="CurrentFlag" Member="CurrentFlag" Storage="_CurrentFlag" DbType="Bit NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Employee_Contact_ContactID" Member="Person_Contact" Storage="_Person_Contact" ThisKey="ContactID" OtherKey="ContactID" IsForeignKey="true" />
+      <Association Name="FK_Employee_Employee_ManagerID" Member="Manager" Storage="_Manager" ThisKey="ManagerID" OtherKey="EmployeeID" IsForeignKey="true" />
+      <Association Name="FK_Employee_Employee_ManagerID" Member="Employee" Storage="_Employee" ThisKey="EmployeeID" OtherKey="ManagerID" DeleteRule="NO ACTION" />
+      <Association Name="FK_EmployeeAddress_Employee_EmployeeID" Member="HumanResources_EmployeeAddress" Storage="_HumanResources_EmployeeAddress" ThisKey="EmployeeID" OtherKey="EmployeeID" DeleteRule="NO ACTION" />
+      <Association Name="FK_EmployeeDepartmentHistory_Employee_EmployeeID" Member="HumanResources_EmployeeDepartmentHistory" Storage="_HumanResources_EmployeeDepartmentHistory" ThisKey="EmployeeID" OtherKey="EmployeeID" DeleteRule="NO ACTION" />
+      <Association Name="FK_EmployeePayHistory_Employee_EmployeeID" Member="HumanResources_EmployeePayHistory" Storage="_HumanResources_EmployeePayHistory" ThisKey="EmployeeID" OtherKey="EmployeeID" DeleteRule="NO ACTION" />
+      <Association Name="FK_JobCandidate_Employee_EmployeeID" Member="HumanResources_JobCandidate" Storage="_HumanResources_JobCandidate" ThisKey="EmployeeID" OtherKey="EmployeeID" DeleteRule="NO ACTION" />
+      <Association Name="FK_PurchaseOrderHeader_Employee_EmployeeID" Member="Purchasing_PurchaseOrderHeader" Storage="_Purchasing_PurchaseOrderHeader" ThisKey="EmployeeID" OtherKey="EmployeeID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesPerson_Employee_SalesPersonID" Member="Sales_SalesPerson" Storage="_Sales_SalesPerson" ThisKey="EmployeeID" OtherKey="SalesPersonID" DeleteRule="NO ACTION" IsUnique="true" />
+    </Type>
+  </Table>
+  <Table Name="HumanResources.EmployeeAddress" Member="HumanResources_EmployeeAddress">
+    <Type Name="HumanResources_EmployeeAddress">
+      <Column Name="EmployeeID" Member="EmployeeID" Storage="_EmployeeID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="AddressID" Member="AddressID" Storage="_AddressID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_EmployeeAddress_Address_AddressID" Member="Person_Address" Storage="_Person_Address" ThisKey="AddressID" OtherKey="AddressID" IsForeignKey="true" />
+      <Association Name="FK_EmployeeAddress_Employee_EmployeeID" Member="HumanResources_Employee" Storage="_HumanResources_Employee" ThisKey="EmployeeID" OtherKey="EmployeeID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="HumanResources.EmployeeDepartmentHistory" Member="HumanResources_EmployeeDepartmentHistory">
+    <Type Name="HumanResources_EmployeeDepartmentHistory">
+      <Column Name="EmployeeID" Member="EmployeeID" Storage="_EmployeeID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="DepartmentID" Member="DepartmentID" Storage="_DepartmentID" DbType="SmallInt NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ShiftID" Member="ShiftID" Storage="_ShiftID" DbType="TinyInt NOT NULL" IsPrimaryKey="true" />
+      <Column Name="StartDate" Member="StartDate" Storage="_StartDate" DbType="DateTime NOT NULL" IsPrimaryKey="true" />
+      <Column Name="EndDate" Member="EndDate" Storage="_EndDate" DbType="DateTime" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_EmployeeDepartmentHistory_Department_DepartmentID" Member="HumanResources_Department" Storage="_HumanResources_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" IsForeignKey="true" />
+      <Association Name="FK_EmployeeDepartmentHistory_Employee_EmployeeID" Member="HumanResources_Employee" Storage="_HumanResources_Employee" ThisKey="EmployeeID" OtherKey="EmployeeID" IsForeignKey="true" />
+      <Association Name="FK_EmployeeDepartmentHistory_Shift_ShiftID" Member="HumanResources_Shift" Storage="_HumanResources_Shift" ThisKey="ShiftID" OtherKey="ShiftID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="HumanResources.EmployeePayHistory" Member="HumanResources_EmployeePayHistory">
+    <Type Name="HumanResources_EmployeePayHistory">
+      <Column Name="EmployeeID" Member="EmployeeID" Storage="_EmployeeID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="RateChangeDate" Member="RateChangeDate" Storage="_RateChangeDate" DbType="DateTime NOT NULL" IsPrimaryKey="true" />
+      <Column Name="Rate" Member="Rate" Storage="_Rate" DbType="Money NOT NULL" />
+      <Column Name="PayFrequency" Member="PayFrequency" Storage="_PayFrequency" DbType="TinyInt NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_EmployeePayHistory_Employee_EmployeeID" Member="HumanResources_Employee" Storage="_HumanResources_Employee" ThisKey="EmployeeID" OtherKey="EmployeeID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ErrorLog" Member="ErrorLog">
+    <Type Name="ErrorLog">
+      <Column Name="ErrorLogID" Member="ErrorLogID" Storage="_ErrorLogID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ErrorTime" Member="ErrorTime" Storage="_ErrorTime" DbType="DateTime NOT NULL" />
+      <Column Name="UserName" Member="UserName" Storage="_UserName" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ErrorNumber" Member="ErrorNumber" Storage="_ErrorNumber" DbType="Int NOT NULL" />
+      <Column Name="ErrorSeverity" Member="ErrorSeverity" Storage="_ErrorSeverity" DbType="Int" />
+      <Column Name="ErrorState" Member="ErrorState" Storage="_ErrorState" DbType="Int" />
+      <Column Name="ErrorProcedure" Member="ErrorProcedure" Storage="_ErrorProcedure" DbType="NVarChar(126)" />
+      <Column Name="ErrorLine" Member="ErrorLine" Storage="_ErrorLine" DbType="Int" />
+      <Column Name="ErrorMessage" Member="ErrorMessage" Storage="_ErrorMessage" DbType="NVarChar(4000) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Production.Illustration" Member="Production_Illustration">
+    <Type Name="Production_Illustration">
+      <Column Name="IllustrationID" Member="IllustrationID" Storage="_IllustrationID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Diagram" Member="Diagram" Storage="_Diagram" DbType="Xml" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductModelIllustration_Illustration_IllustrationID" Member="Production_ProductModelIllustration" Storage="_Production_ProductModelIllustration" ThisKey="IllustrationID" OtherKey="IllustrationID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.Individual" Member="Sales_Individual">
+    <Type Name="Sales_Individual">
+      <Column Name="CustomerID" Member="CustomerID" Storage="_CustomerID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ContactID" Member="ContactID" Storage="_ContactID" DbType="Int NOT NULL" />
+      <Column Name="Demographics" Member="Demographics" Storage="_Demographics" DbType="Xml" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Individual_Contact_ContactID" Member="Person_Contact" Storage="_Person_Contact" ThisKey="ContactID" OtherKey="ContactID" IsForeignKey="true" />
+      <Association Name="FK_Individual_Customer_CustomerID" Member="Sales_Customer" Storage="_Sales_Customer" ThisKey="CustomerID" OtherKey="CustomerID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="HumanResources.JobCandidate" Member="HumanResources_JobCandidate">
+    <Type Name="HumanResources_JobCandidate">
+      <Column Name="JobCandidateID" Member="JobCandidateID" Storage="_JobCandidateID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="EmployeeID" Member="EmployeeID" Storage="_EmployeeID" DbType="Int" />
+      <Column Name="Resume" Member="Resume" Storage="_Resume" DbType="Xml" UpdateCheck="Never" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_JobCandidate_Employee_EmployeeID" Member="HumanResources_Employee" Storage="_HumanResources_Employee" ThisKey="EmployeeID" OtherKey="EmployeeID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.Location" Member="Production_Location">
+    <Type Name="Production_Location">
+      <Column Name="LocationID" Member="LocationID" Storage="_LocationID" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CostRate" Member="CostRate" Storage="_CostRate" DbType="SmallMoney NOT NULL" />
+      <Column Name="Availability" Member="Availability" Storage="_Availability" DbType="Decimal(8,2) NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductInventory_Location_LocationID" Member="Production_ProductInventory" Storage="_Production_ProductInventory" ThisKey="LocationID" OtherKey="LocationID" DeleteRule="NO ACTION" />
+      <Association Name="FK_WorkOrderRouting_Location_LocationID" Member="Production_WorkOrderRouting" Storage="_Production_WorkOrderRouting" ThisKey="LocationID" OtherKey="LocationID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.Product" Member="Production_Product">
+    <Type Name="Production_Product">
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductNumber" Member="ProductNumber" Storage="_ProductNumber" DbType="NVarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="MakeFlag" Member="MakeFlag" Storage="_MakeFlag" DbType="Bit NOT NULL" />
+      <Column Name="FinishedGoodsFlag" Member="FinishedGoodsFlag" Storage="_FinishedGoodsFlag" DbType="Bit NOT NULL" />
+      <Column Name="Color" Member="Color" Storage="_Color" DbType="NVarChar(15)" />
+      <Column Name="SafetyStockLevel" Member="SafetyStockLevel" Storage="_SafetyStockLevel" DbType="SmallInt NOT NULL" />
+      <Column Name="ReorderPoint" Member="ReorderPoint" Storage="_ReorderPoint" DbType="SmallInt NOT NULL" />
+      <Column Name="StandardCost" Member="StandardCost" Storage="_StandardCost" DbType="Money NOT NULL" />
+      <Column Name="ListPrice" Member="ListPrice" Storage="_ListPrice" DbType="Money NOT NULL" />
+      <Column Name="Size" Member="Size" Storage="_Size" DbType="NVarChar(5)" />
+      <Column Name="SizeUnitMeasureCode" Member="SizeUnitMeasureCode" Storage="_SizeUnitMeasureCode" DbType="NChar(3)" />
+      <Column Name="WeightUnitMeasureCode" Member="WeightUnitMeasureCode" Storage="_WeightUnitMeasureCode" DbType="NChar(3)" />
+      <Column Name="Weight" Member="Weight" Storage="_Weight" DbType="Decimal(8,2)" />
+      <Column Name="DaysToManufacture" Member="DaysToManufacture" Storage="_DaysToManufacture" DbType="Int NOT NULL" />
+      <Column Name="ProductLine" Member="ProductLine" Storage="_ProductLine" DbType="NChar(2)" />
+      <Column Name="Class" Member="Class" Storage="_Class" DbType="NChar(2)" />
+      <Column Name="Style" Member="Style" Storage="_Style" DbType="NChar(2)" />
+      <Column Name="ProductSubcategoryID" Member="ProductSubcategoryID" Storage="_ProductSubcategoryID" DbType="Int" />
+      <Column Name="ProductModelID" Member="ProductModelID" Storage="_ProductModelID" DbType="Int" />
+      <Column Name="SellStartDate" Member="SellStartDate" Storage="_SellStartDate" DbType="DateTime NOT NULL" />
+      <Column Name="SellEndDate" Member="SellEndDate" Storage="_SellEndDate" DbType="DateTime" />
+      <Column Name="DiscontinuedDate" Member="DiscontinuedDate" Storage="_DiscontinuedDate" DbType="DateTime" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_BillOfMaterials_Product_ComponentID" Member="Production_BillOfMaterials" Storage="_Production_BillOfMaterials" ThisKey="ProductID" OtherKey="ComponentID" DeleteRule="NO ACTION" />
+      <Association Name="FK_BillOfMaterials_Product_ProductAssemblyID" Member="Product" Storage="_Product" ThisKey="ProductID" OtherKey="ProductAssemblyID" DeleteRule="NO ACTION" />
+      <Association Name="FK_Product_ProductModel_ProductModelID" Member="Production_ProductModel" Storage="_Production_ProductModel" ThisKey="ProductModelID" OtherKey="ProductModelID" IsForeignKey="true" />
+      <Association Name="FK_Product_ProductSubcategory_ProductSubcategoryID" Member="Production_ProductSubcategory" Storage="_Production_ProductSubcategory" ThisKey="ProductSubcategoryID" OtherKey="ProductSubcategoryID" IsForeignKey="true" />
+      <Association Name="FK_Product_UnitMeasure_SizeUnitMeasureCode" Member="Production_UnitMeasure" Storage="_Production_UnitMeasure" ThisKey="SizeUnitMeasureCode" OtherKey="UnitMeasureCode" IsForeignKey="true" />
+      <Association Name="FK_Product_UnitMeasure_WeightUnitMeasureCode" Member="WeightUnitMeasureCodeProduction_UnitMeasure" Storage="_WeightUnitMeasureCodeProduction_UnitMeasure" ThisKey="WeightUnitMeasureCode" OtherKey="UnitMeasureCode" IsForeignKey="true" />
+      <Association Name="FK_ProductCostHistory_Product_ProductID" Member="Production_ProductCostHistory" Storage="_Production_ProductCostHistory" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductDocument_Product_ProductID" Member="Production_ProductDocument" Storage="_Production_ProductDocument" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductInventory_Product_ProductID" Member="Production_ProductInventory" Storage="_Production_ProductInventory" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductListPriceHistory_Product_ProductID" Member="Production_ProductListPriceHistory" Storage="_Production_ProductListPriceHistory" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductProductPhoto_Product_ProductID" Member="Production_ProductProductPhoto" Storage="_Production_ProductProductPhoto" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductReview_Product_ProductID" Member="Production_ProductReview" Storage="_Production_ProductReview" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_TransactionHistory_Product_ProductID" Member="Production_TransactionHistory" Storage="_Production_TransactionHistory" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_WorkOrder_Product_ProductID" Member="Production_WorkOrder" Storage="_Production_WorkOrder" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductVendor_Product_ProductID" Member="Purchasing_ProductVendor" Storage="_Purchasing_ProductVendor" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_PurchaseOrderDetail_Product_ProductID" Member="Purchasing_PurchaseOrderDetail" Storage="_Purchasing_PurchaseOrderDetail" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ShoppingCartItem_Product_ProductID" Member="Sales_ShoppingCartItem" Storage="_Sales_ShoppingCartItem" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SpecialOfferProduct_Product_ProductID" Member="Sales_SpecialOfferProduct" Storage="_Sales_SpecialOfferProduct" ThisKey="ProductID" OtherKey="ProductID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductCategory" Member="Production_ProductCategory">
+    <Type Name="Production_ProductCategory">
+      <Column Name="ProductCategoryID" Member="ProductCategoryID" Storage="_ProductCategoryID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductSubcategory_ProductCategory_ProductCategoryID" Member="Production_ProductSubcategory" Storage="_Production_ProductSubcategory" ThisKey="ProductCategoryID" OtherKey="ProductCategoryID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductCostHistory" Member="Production_ProductCostHistory">
+    <Type Name="Production_ProductCostHistory">
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="StartDate" Member="StartDate" Storage="_StartDate" DbType="DateTime NOT NULL" IsPrimaryKey="true" />
+      <Column Name="EndDate" Member="EndDate" Storage="_EndDate" DbType="DateTime" />
+      <Column Name="StandardCost" Member="StandardCost" Storage="_StandardCost" DbType="Money NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductCostHistory_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductDescription" Member="Production_ProductDescription">
+    <Type Name="Production_ProductDescription">
+      <Column Name="ProductDescriptionID" Member="ProductDescriptionID" Storage="_ProductDescriptionID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Description" Member="Description" Storage="_Description" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID" Member="Production_ProductModelProductDescriptionCulture" Storage="_Production_ProductModelProductDescriptionCulture" ThisKey="ProductDescriptionID" OtherKey="ProductDescriptionID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductDocument" Member="Production_ProductDocument">
+    <Type Name="Production_ProductDocument">
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="DocumentID" Member="DocumentID" Storage="_DocumentID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductDocument_Document_DocumentID" Member="Production_Document" Storage="_Production_Document" ThisKey="DocumentID" OtherKey="DocumentID" IsForeignKey="true" />
+      <Association Name="FK_ProductDocument_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductInventory" Member="Production_ProductInventory">
+    <Type Name="Production_ProductInventory">
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="LocationID" Member="LocationID" Storage="_LocationID" DbType="SmallInt NOT NULL" IsPrimaryKey="true" />
+      <Column Name="Shelf" Member="Shelf" Storage="_Shelf" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Bin" Member="Bin" Storage="_Bin" DbType="TinyInt NOT NULL" />
+      <Column Name="Quantity" Member="Quantity" Storage="_Quantity" DbType="SmallInt NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductInventory_Location_LocationID" Member="Production_Location" Storage="_Production_Location" ThisKey="LocationID" OtherKey="LocationID" IsForeignKey="true" />
+      <Association Name="FK_ProductInventory_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductListPriceHistory" Member="Production_ProductListPriceHistory">
+    <Type Name="Production_ProductListPriceHistory">
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="StartDate" Member="StartDate" Storage="_StartDate" DbType="DateTime NOT NULL" IsPrimaryKey="true" />
+      <Column Name="EndDate" Member="EndDate" Storage="_EndDate" DbType="DateTime" />
+      <Column Name="ListPrice" Member="ListPrice" Storage="_ListPrice" DbType="Money NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductListPriceHistory_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductModel" Member="Production_ProductModel">
+    <Type Name="Production_ProductModel">
+      <Column Name="ProductModelID" Member="ProductModelID" Storage="_ProductModelID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CatalogDescription" Member="CatalogDescription" Storage="_CatalogDescription" DbType="Xml" UpdateCheck="Never" />
+      <Column Name="Instructions" Member="Instructions" Storage="_Instructions" DbType="Xml" UpdateCheck="Never" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Product_ProductModel_ProductModelID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductModelID" OtherKey="ProductModelID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductModelIllustration_ProductModel_ProductModelID" Member="Production_ProductModelIllustration" Storage="_Production_ProductModelIllustration" ThisKey="ProductModelID" OtherKey="ProductModelID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID" Member="Production_ProductModelProductDescriptionCulture" Storage="_Production_ProductModelProductDescriptionCulture" ThisKey="ProductModelID" OtherKey="ProductModelID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductModelIllustration" Member="Production_ProductModelIllustration">
+    <Type Name="Production_ProductModelIllustration">
+      <Column Name="ProductModelID" Member="ProductModelID" Storage="_ProductModelID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="IllustrationID" Member="IllustrationID" Storage="_IllustrationID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductModelIllustration_Illustration_IllustrationID" Member="Production_Illustration" Storage="_Production_Illustration" ThisKey="IllustrationID" OtherKey="IllustrationID" IsForeignKey="true" />
+      <Association Name="FK_ProductModelIllustration_ProductModel_ProductModelID" Member="Production_ProductModel" Storage="_Production_ProductModel" ThisKey="ProductModelID" OtherKey="ProductModelID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductModelProductDescriptionCulture" Member="Production_ProductModelProductDescriptionCulture">
+    <Type Name="Production_ProductModelProductDescriptionCulture">
+      <Column Name="ProductModelID" Member="ProductModelID" Storage="_ProductModelID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ProductDescriptionID" Member="ProductDescriptionID" Storage="_ProductDescriptionID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="CultureID" Member="CultureID" Storage="_CultureID" DbType="NChar(6) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductModelProductDescriptionCulture_Culture_CultureID" Member="Production_Culture" Storage="_Production_Culture" ThisKey="CultureID" OtherKey="CultureID" IsForeignKey="true" />
+      <Association Name="FK_ProductModelProductDescriptionCulture_ProductDescription_ProductDescriptionID" Member="Production_ProductDescription" Storage="_Production_ProductDescription" ThisKey="ProductDescriptionID" OtherKey="ProductDescriptionID" IsForeignKey="true" />
+      <Association Name="FK_ProductModelProductDescriptionCulture_ProductModel_ProductModelID" Member="Production_ProductModel" Storage="_Production_ProductModel" ThisKey="ProductModelID" OtherKey="ProductModelID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductPhoto" Member="Production_ProductPhoto">
+    <Type Name="Production_ProductPhoto">
+      <Column Name="ProductPhotoID" Member="ProductPhotoID" Storage="_ProductPhotoID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ThumbNailPhoto" Member="ThumbNailPhoto" Storage="_ThumbNailPhoto" DbType="VarBinary(MAX)" UpdateCheck="Never" />
+      <Column Name="ThumbnailPhotoFileName" Member="ThumbnailPhotoFileName" Storage="_ThumbnailPhotoFileName" DbType="NVarChar(50)" />
+      <Column Name="LargePhoto" Member="LargePhoto" Storage="_LargePhoto" DbType="VarBinary(MAX)" UpdateCheck="Never" />
+      <Column Name="LargePhotoFileName" Member="LargePhotoFileName" Storage="_LargePhotoFileName" DbType="NVarChar(50)" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" Member="Production_ProductProductPhoto" Storage="_Production_ProductProductPhoto" ThisKey="ProductPhotoID" OtherKey="ProductPhotoID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductProductPhoto" Member="Production_ProductProductPhoto">
+    <Type Name="Production_ProductProductPhoto">
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ProductPhotoID" Member="ProductPhotoID" Storage="_ProductPhotoID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="Primary" Member="Primary" Storage="_Primary" DbType="Bit NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductProductPhoto_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+      <Association Name="FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" Member="Production_ProductPhoto" Storage="_Production_ProductPhoto" ThisKey="ProductPhotoID" OtherKey="ProductPhotoID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductReview" Member="Production_ProductReview">
+    <Type Name="Production_ProductReview">
+      <Column Name="ProductReviewID" Member="ProductReviewID" Storage="_ProductReviewID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" />
+      <Column Name="ReviewerName" Member="ReviewerName" Storage="_ReviewerName" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ReviewDate" Member="ReviewDate" Storage="_ReviewDate" DbType="DateTime NOT NULL" />
+      <Column Name="EmailAddress" Member="EmailAddress" Storage="_EmailAddress" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Rating" Member="Rating" Storage="_Rating" DbType="Int NOT NULL" />
+      <Column Name="Comments" Member="Comments" Storage="_Comments" DbType="NVarChar(3850)" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductReview_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ProductSubcategory" Member="Production_ProductSubcategory">
+    <Type Name="Production_ProductSubcategory">
+      <Column Name="ProductSubcategoryID" Member="ProductSubcategoryID" Storage="_ProductSubcategoryID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ProductCategoryID" Member="ProductCategoryID" Storage="_ProductCategoryID" DbType="Int NOT NULL" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Product_ProductSubcategory_ProductSubcategoryID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductSubcategoryID" OtherKey="ProductSubcategoryID" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductSubcategory_ProductCategory_ProductCategoryID" Member="Production_ProductCategory" Storage="_Production_ProductCategory" ThisKey="ProductCategoryID" OtherKey="ProductCategoryID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.ProductVendor" Member="Purchasing_ProductVendor">
+    <Type Name="Purchasing_ProductVendor">
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="VendorID" Member="VendorID" Storage="_VendorID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="AverageLeadTime" Member="AverageLeadTime" Storage="_AverageLeadTime" DbType="Int NOT NULL" />
+      <Column Name="StandardPrice" Member="StandardPrice" Storage="_StandardPrice" DbType="Money NOT NULL" />
+      <Column Name="LastReceiptCost" Member="LastReceiptCost" Storage="_LastReceiptCost" DbType="Money" />
+      <Column Name="LastReceiptDate" Member="LastReceiptDate" Storage="_LastReceiptDate" DbType="DateTime" />
+      <Column Name="MinOrderQty" Member="MinOrderQty" Storage="_MinOrderQty" DbType="Int NOT NULL" />
+      <Column Name="MaxOrderQty" Member="MaxOrderQty" Storage="_MaxOrderQty" DbType="Int NOT NULL" />
+      <Column Name="OnOrderQty" Member="OnOrderQty" Storage="_OnOrderQty" DbType="Int" />
+      <Column Name="UnitMeasureCode" Member="UnitMeasureCode" Storage="_UnitMeasureCode" DbType="NChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductVendor_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+      <Association Name="FK_ProductVendor_UnitMeasure_UnitMeasureCode" Member="Production_UnitMeasure" Storage="_Production_UnitMeasure" ThisKey="UnitMeasureCode" OtherKey="UnitMeasureCode" IsForeignKey="true" />
+      <Association Name="FK_ProductVendor_Vendor_VendorID" Member="Purchasing_Vendor" Storage="_Purchasing_Vendor" ThisKey="VendorID" OtherKey="VendorID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.PurchaseOrderDetail" Member="Purchasing_PurchaseOrderDetail">
+    <Type Name="Purchasing_PurchaseOrderDetail">
+      <Column Name="PurchaseOrderID" Member="PurchaseOrderID" Storage="_PurchaseOrderID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="PurchaseOrderDetailID" Member="PurchaseOrderDetailID" Storage="_PurchaseOrderDetailID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="DueDate" Member="DueDate" Storage="_DueDate" DbType="DateTime NOT NULL" />
+      <Column Name="OrderQty" Member="OrderQty" Storage="_OrderQty" DbType="SmallInt NOT NULL" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" />
+      <Column Name="UnitPrice" Member="UnitPrice" Storage="_UnitPrice" DbType="Money NOT NULL" />
+      <Column Name="LineTotal" Member="LineTotal" Storage="_LineTotal" DbType="Money NOT NULL" Expression="(isnull([OrderQty]*[UnitPrice],(0.00)))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="ReceivedQty" Member="ReceivedQty" Storage="_ReceivedQty" DbType="Decimal(8,2) NOT NULL" />
+      <Column Name="RejectedQty" Member="RejectedQty" Storage="_RejectedQty" DbType="Decimal(8,2) NOT NULL" />
+      <Column Name="StockedQty" Member="StockedQty" Storage="_StockedQty" DbType="Decimal(9,2) NOT NULL" Expression="(isnull([ReceivedQty]-[RejectedQty],(0.00)))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_PurchaseOrderDetail_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+      <Association Name="FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID" Member="Purchasing_PurchaseOrderHeader" Storage="_Purchasing_PurchaseOrderHeader" ThisKey="PurchaseOrderID" OtherKey="PurchaseOrderID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.PurchaseOrderHeader" Member="Purchasing_PurchaseOrderHeader">
+    <Type Name="Purchasing_PurchaseOrderHeader">
+      <Column Name="PurchaseOrderID" Member="PurchaseOrderID" Storage="_PurchaseOrderID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="RevisionNumber" Member="RevisionNumber" Storage="_RevisionNumber" DbType="TinyInt NOT NULL" />
+      <Column Name="Status" Member="Status" Storage="_Status" DbType="TinyInt NOT NULL" />
+      <Column Name="EmployeeID" Member="EmployeeID" Storage="_EmployeeID" DbType="Int NOT NULL" />
+      <Column Name="VendorID" Member="VendorID" Storage="_VendorID" DbType="Int NOT NULL" />
+      <Column Name="ShipMethodID" Member="ShipMethodID" Storage="_ShipMethodID" DbType="Int NOT NULL" />
+      <Column Name="OrderDate" Member="OrderDate" Storage="_OrderDate" DbType="DateTime NOT NULL" />
+      <Column Name="ShipDate" Member="ShipDate" Storage="_ShipDate" DbType="DateTime" />
+      <Column Name="SubTotal" Member="SubTotal" Storage="_SubTotal" DbType="Money NOT NULL" />
+      <Column Name="TaxAmt" Member="TaxAmt" Storage="_TaxAmt" DbType="Money NOT NULL" />
+      <Column Name="Freight" Member="Freight" Storage="_Freight" DbType="Money NOT NULL" />
+      <Column Name="TotalDue" Member="TotalDue" Storage="_TotalDue" DbType="Money NOT NULL" Expression="(isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_PurchaseOrderDetail_PurchaseOrderHeader_PurchaseOrderID" Member="Purchasing_PurchaseOrderDetail" Storage="_Purchasing_PurchaseOrderDetail" ThisKey="PurchaseOrderID" OtherKey="PurchaseOrderID" DeleteRule="NO ACTION" />
+      <Association Name="FK_PurchaseOrderHeader_Employee_EmployeeID" Member="HumanResources_Employee" Storage="_HumanResources_Employee" ThisKey="EmployeeID" OtherKey="EmployeeID" IsForeignKey="true" />
+      <Association Name="FK_PurchaseOrderHeader_ShipMethod_ShipMethodID" Member="Purchasing_ShipMethod" Storage="_Purchasing_ShipMethod" ThisKey="ShipMethodID" OtherKey="ShipMethodID" IsForeignKey="true" />
+      <Association Name="FK_PurchaseOrderHeader_Vendor_VendorID" Member="Purchasing_Vendor" Storage="_Purchasing_Vendor" ThisKey="VendorID" OtherKey="VendorID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesOrderDetail" Member="Sales_SalesOrderDetail">
+    <Type Name="Sales_SalesOrderDetail">
+      <Column Name="SalesOrderID" Member="SalesOrderID" Storage="_SalesOrderID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="SalesOrderDetailID" Member="SalesOrderDetailID" Storage="_SalesOrderDetailID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="CarrierTrackingNumber" Member="CarrierTrackingNumber" Storage="_CarrierTrackingNumber" DbType="NVarChar(25)" />
+      <Column Name="OrderQty" Member="OrderQty" Storage="_OrderQty" DbType="SmallInt NOT NULL" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" />
+      <Column Name="SpecialOfferID" Member="SpecialOfferID" Storage="_SpecialOfferID" DbType="Int NOT NULL" />
+      <Column Name="UnitPrice" Member="UnitPrice" Storage="_UnitPrice" DbType="Money NOT NULL" />
+      <Column Name="UnitPriceDiscount" Member="UnitPriceDiscount" Storage="_UnitPriceDiscount" DbType="Money NOT NULL" />
+      <Column Name="LineTotal" Member="LineTotal" Storage="_LineTotal" DbType="Decimal(38,6) NOT NULL" Expression="(isnull(([UnitPrice]*((1.0)-[UnitPriceDiscount]))*[OrderQty],(0.0)))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="SalesOrderID" OtherKey="SalesOrderID" DeleteOnNull="true" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID" Member="Sales_SpecialOfferProduct" Storage="_Sales_SpecialOfferProduct" ThisKey="SpecialOfferID,ProductID" OtherKey="SpecialOfferID,ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesOrderHeader" Member="Sales_SalesOrderHeader">
+    <Type Name="Sales_SalesOrderHeader">
+      <Column Name="SalesOrderID" Member="SalesOrderID" Storage="_SalesOrderID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="RevisionNumber" Member="RevisionNumber" Storage="_RevisionNumber" DbType="TinyInt NOT NULL" />
+      <Column Name="OrderDate" Member="OrderDate" Storage="_OrderDate" DbType="DateTime NOT NULL" />
+      <Column Name="DueDate" Member="DueDate" Storage="_DueDate" DbType="DateTime NOT NULL" />
+      <Column Name="ShipDate" Member="ShipDate" Storage="_ShipDate" DbType="DateTime" />
+      <Column Name="Status" Member="Status" Storage="_Status" DbType="TinyInt NOT NULL" />
+      <Column Name="OnlineOrderFlag" Member="OnlineOrderFlag" Storage="_OnlineOrderFlag" DbType="Bit NOT NULL" />
+      <Column Name="SalesOrderNumber" Member="SalesOrderNumber" Storage="_SalesOrderNumber" DbType="NVarChar(25) NOT NULL" CanBeNull="false" Expression="(isnull(N'SO'+CONVERT([nvarchar](23),[SalesOrderID],0),N'*** ERROR ***'))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="PurchaseOrderNumber" Member="PurchaseOrderNumber" Storage="_PurchaseOrderNumber" DbType="NVarChar(25)" />
+      <Column Name="AccountNumber" Member="AccountNumber" Storage="_AccountNumber" DbType="NVarChar(15)" />
+      <Column Name="CustomerID" Member="CustomerID" Storage="_CustomerID" DbType="Int NOT NULL" />
+      <Column Name="ContactID" Member="ContactID" Storage="_ContactID" DbType="Int NOT NULL" />
+      <Column Name="SalesPersonID" Member="SalesPersonID" Storage="_SalesPersonID" DbType="Int" />
+      <Column Name="TerritoryID" Member="TerritoryID" Storage="_TerritoryID" DbType="Int" />
+      <Column Name="BillToAddressID" Member="BillToAddressID" Storage="_BillToAddressID" DbType="Int NOT NULL" />
+      <Column Name="ShipToAddressID" Member="ShipToAddressID" Storage="_ShipToAddressID" DbType="Int NOT NULL" />
+      <Column Name="ShipMethodID" Member="ShipMethodID" Storage="_ShipMethodID" DbType="Int NOT NULL" />
+      <Column Name="CreditCardID" Member="CreditCardID" Storage="_CreditCardID" DbType="Int" />
+      <Column Name="CreditCardApprovalCode" Member="CreditCardApprovalCode" Storage="_CreditCardApprovalCode" DbType="VarChar(15)" />
+      <Column Name="CurrencyRateID" Member="CurrencyRateID" Storage="_CurrencyRateID" DbType="Int" />
+      <Column Name="SubTotal" Member="SubTotal" Storage="_SubTotal" DbType="Money NOT NULL" />
+      <Column Name="TaxAmt" Member="TaxAmt" Storage="_TaxAmt" DbType="Money NOT NULL" />
+      <Column Name="Freight" Member="Freight" Storage="_Freight" DbType="Money NOT NULL" />
+      <Column Name="TotalDue" Member="TotalDue" Storage="_TotalDue" DbType="Money NOT NULL" Expression="(isnull(([SubTotal]+[TaxAmt])+[Freight],(0)))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="Comment" Member="Comment" Storage="_Comment" DbType="NVarChar(128)" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesOrderDetail_SalesOrderHeader_SalesOrderID" Member="Sales_SalesOrderDetail" Storage="_Sales_SalesOrderDetail" ThisKey="SalesOrderID" OtherKey="SalesOrderID" DeleteRule="CASCADE" />
+      <Association Name="FK_SalesOrderHeader_Address_BillToAddressID" Member="Person_Address" Storage="_Person_Address" ThisKey="BillToAddressID" OtherKey="AddressID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_Address_ShipToAddressID" Member="ShipToAddress" Storage="_ShipToAddress" ThisKey="ShipToAddressID" OtherKey="AddressID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_Contact_ContactID" Member="Person_Contact" Storage="_Person_Contact" ThisKey="ContactID" OtherKey="ContactID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_CreditCard_CreditCardID" Member="Sales_CreditCard" Storage="_Sales_CreditCard" ThisKey="CreditCardID" OtherKey="CreditCardID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_CurrencyRate_CurrencyRateID" Member="Sales_CurrencyRate" Storage="_Sales_CurrencyRate" ThisKey="CurrencyRateID" OtherKey="CurrencyRateID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_Customer_CustomerID" Member="Sales_Customer" Storage="_Sales_Customer" ThisKey="CustomerID" OtherKey="CustomerID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_SalesPerson_SalesPersonID" Member="Sales_SalesPerson" Storage="_Sales_SalesPerson" ThisKey="SalesPersonID" OtherKey="SalesPersonID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_SalesTerritory_TerritoryID" Member="Sales_SalesTerritory" Storage="_Sales_SalesTerritory" ThisKey="TerritoryID" OtherKey="TerritoryID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeader_ShipMethod_ShipMethodID" Member="Purchasing_ShipMethod" Storage="_Purchasing_ShipMethod" ThisKey="ShipMethodID" OtherKey="ShipMethodID" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID" Member="Sales_SalesOrderHeaderSalesReason" Storage="_Sales_SalesOrderHeaderSalesReason" ThisKey="SalesOrderID" OtherKey="SalesOrderID" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesOrderHeaderSalesReason" Member="Sales_SalesOrderHeaderSalesReason">
+    <Type Name="Sales_SalesOrderHeaderSalesReason">
+      <Column Name="SalesOrderID" Member="SalesOrderID" Storage="_SalesOrderID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="SalesReasonID" Member="SalesReasonID" Storage="_SalesReasonID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesOrderHeaderSalesReason_SalesOrderHeader_SalesOrderID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="SalesOrderID" OtherKey="SalesOrderID" DeleteOnNull="true" IsForeignKey="true" />
+      <Association Name="FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID" Member="Sales_SalesReason" Storage="_Sales_SalesReason" ThisKey="SalesReasonID" OtherKey="SalesReasonID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesPerson" Member="Sales_SalesPerson">
+    <Type Name="Sales_SalesPerson">
+      <Column Name="SalesPersonID" Member="SalesPersonID" Storage="_SalesPersonID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="TerritoryID" Member="TerritoryID" Storage="_TerritoryID" DbType="Int" />
+      <Column Name="SalesQuota" Member="SalesQuota" Storage="_SalesQuota" DbType="Money" />
+      <Column Name="Bonus" Member="Bonus" Storage="_Bonus" DbType="Money NOT NULL" />
+      <Column Name="CommissionPct" Member="CommissionPct" Storage="_CommissionPct" DbType="SmallMoney NOT NULL" />
+      <Column Name="SalesYTD" Member="SalesYTD" Storage="_SalesYTD" DbType="Money NOT NULL" />
+      <Column Name="SalesLastYear" Member="SalesLastYear" Storage="_SalesLastYear" DbType="Money NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesOrderHeader_SalesPerson_SalesPersonID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="SalesPersonID" OtherKey="SalesPersonID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesPerson_Employee_SalesPersonID" Member="HumanResources_Employee" Storage="_HumanResources_Employee" ThisKey="SalesPersonID" OtherKey="EmployeeID" IsForeignKey="true" />
+      <Association Name="FK_SalesPerson_SalesTerritory_TerritoryID" Member="Sales_SalesTerritory" Storage="_Sales_SalesTerritory" ThisKey="TerritoryID" OtherKey="TerritoryID" IsForeignKey="true" />
+      <Association Name="FK_SalesPersonQuotaHistory_SalesPerson_SalesPersonID" Member="Sales_SalesPersonQuotaHistory" Storage="_Sales_SalesPersonQuotaHistory" ThisKey="SalesPersonID" OtherKey="SalesPersonID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesTerritoryHistory_SalesPerson_SalesPersonID" Member="Sales_SalesTerritoryHistory" Storage="_Sales_SalesTerritoryHistory" ThisKey="SalesPersonID" OtherKey="SalesPersonID" DeleteRule="NO ACTION" />
+      <Association Name="FK_Store_SalesPerson_SalesPersonID" Member="Sales_Store" Storage="_Sales_Store" ThisKey="SalesPersonID" OtherKey="SalesPersonID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesPersonQuotaHistory" Member="Sales_SalesPersonQuotaHistory">
+    <Type Name="Sales_SalesPersonQuotaHistory">
+      <Column Name="SalesPersonID" Member="SalesPersonID" Storage="_SalesPersonID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="QuotaDate" Member="QuotaDate" Storage="_QuotaDate" DbType="DateTime NOT NULL" IsPrimaryKey="true" />
+      <Column Name="SalesQuota" Member="SalesQuota" Storage="_SalesQuota" DbType="Money NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesPersonQuotaHistory_SalesPerson_SalesPersonID" Member="Sales_SalesPerson" Storage="_Sales_SalesPerson" ThisKey="SalesPersonID" OtherKey="SalesPersonID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesReason" Member="Sales_SalesReason">
+    <Type Name="Sales_SalesReason">
+      <Column Name="SalesReasonID" Member="SalesReasonID" Storage="_SalesReasonID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ReasonType" Member="ReasonType" Storage="_ReasonType" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesOrderHeaderSalesReason_SalesReason_SalesReasonID" Member="Sales_SalesOrderHeaderSalesReason" Storage="_Sales_SalesOrderHeaderSalesReason" ThisKey="SalesReasonID" OtherKey="SalesReasonID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesTaxRate" Member="Sales_SalesTaxRate">
+    <Type Name="Sales_SalesTaxRate">
+      <Column Name="SalesTaxRateID" Member="SalesTaxRateID" Storage="_SalesTaxRateID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="StateProvinceID" Member="StateProvinceID" Storage="_StateProvinceID" DbType="Int NOT NULL" />
+      <Column Name="TaxType" Member="TaxType" Storage="_TaxType" DbType="TinyInt NOT NULL" />
+      <Column Name="TaxRate" Member="TaxRate" Storage="_TaxRate" DbType="SmallMoney NOT NULL" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesTaxRate_StateProvince_StateProvinceID" Member="Person_StateProvince" Storage="_Person_StateProvince" ThisKey="StateProvinceID" OtherKey="StateProvinceID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesTerritory" Member="Sales_SalesTerritory">
+    <Type Name="Sales_SalesTerritory">
+      <Column Name="TerritoryID" Member="TerritoryID" Storage="_TerritoryID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CountryRegionCode" Member="CountryRegionCode" Storage="_CountryRegionCode" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Group" Member="Group" Storage="_Group" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SalesYTD" Member="SalesYTD" Storage="_SalesYTD" DbType="Money NOT NULL" />
+      <Column Name="SalesLastYear" Member="SalesLastYear" Storage="_SalesLastYear" DbType="Money NOT NULL" />
+      <Column Name="CostYTD" Member="CostYTD" Storage="_CostYTD" DbType="Money NOT NULL" />
+      <Column Name="CostLastYear" Member="CostLastYear" Storage="_CostLastYear" DbType="Money NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_StateProvince_SalesTerritory_TerritoryID" Member="Person_StateProvince" Storage="_Person_StateProvince" ThisKey="TerritoryID" OtherKey="TerritoryID" DeleteRule="NO ACTION" />
+      <Association Name="FK_Customer_SalesTerritory_TerritoryID" Member="Sales_Customer" Storage="_Sales_Customer" ThisKey="TerritoryID" OtherKey="TerritoryID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesOrderHeader_SalesTerritory_TerritoryID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="TerritoryID" OtherKey="TerritoryID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesPerson_SalesTerritory_TerritoryID" Member="Sales_SalesPerson" Storage="_Sales_SalesPerson" ThisKey="TerritoryID" OtherKey="TerritoryID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesTerritoryHistory_SalesTerritory_TerritoryID" Member="Sales_SalesTerritoryHistory" Storage="_Sales_SalesTerritoryHistory" ThisKey="TerritoryID" OtherKey="TerritoryID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SalesTerritoryHistory" Member="Sales_SalesTerritoryHistory">
+    <Type Name="Sales_SalesTerritoryHistory">
+      <Column Name="SalesPersonID" Member="SalesPersonID" Storage="_SalesPersonID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="TerritoryID" Member="TerritoryID" Storage="_TerritoryID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="StartDate" Member="StartDate" Storage="_StartDate" DbType="DateTime NOT NULL" IsPrimaryKey="true" />
+      <Column Name="EndDate" Member="EndDate" Storage="_EndDate" DbType="DateTime" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesTerritoryHistory_SalesPerson_SalesPersonID" Member="Sales_SalesPerson" Storage="_Sales_SalesPerson" ThisKey="SalesPersonID" OtherKey="SalesPersonID" IsForeignKey="true" />
+      <Association Name="FK_SalesTerritoryHistory_SalesTerritory_TerritoryID" Member="Sales_SalesTerritory" Storage="_Sales_SalesTerritory" ThisKey="TerritoryID" OtherKey="TerritoryID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.ScrapReason" Member="Production_ScrapReason">
+    <Type Name="Production_ScrapReason">
+      <Column Name="ScrapReasonID" Member="ScrapReasonID" Storage="_ScrapReasonID" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_WorkOrder_ScrapReason_ScrapReasonID" Member="Production_WorkOrder" Storage="_Production_WorkOrder" ThisKey="ScrapReasonID" OtherKey="ScrapReasonID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="HumanResources.Shift" Member="HumanResources_Shift">
+    <Type Name="HumanResources_Shift">
+      <Column Name="ShiftID" Member="ShiftID" Storage="_ShiftID" DbType="TinyInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Member="StartTime" Storage="_StartTime" DbType="DateTime NOT NULL" />
+      <Column Name="EndTime" Member="EndTime" Storage="_EndTime" DbType="DateTime NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_EmployeeDepartmentHistory_Shift_ShiftID" Member="HumanResources_EmployeeDepartmentHistory" Storage="_HumanResources_EmployeeDepartmentHistory" ThisKey="ShiftID" OtherKey="ShiftID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.ShipMethod" Member="Purchasing_ShipMethod">
+    <Type Name="Purchasing_ShipMethod">
+      <Column Name="ShipMethodID" Member="ShipMethodID" Storage="_ShipMethodID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ShipBase" Member="ShipBase" Storage="_ShipBase" DbType="Money NOT NULL" />
+      <Column Name="ShipRate" Member="ShipRate" Storage="_ShipRate" DbType="Money NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_PurchaseOrderHeader_ShipMethod_ShipMethodID" Member="Purchasing_PurchaseOrderHeader" Storage="_Purchasing_PurchaseOrderHeader" ThisKey="ShipMethodID" OtherKey="ShipMethodID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SalesOrderHeader_ShipMethod_ShipMethodID" Member="Sales_SalesOrderHeader" Storage="_Sales_SalesOrderHeader" ThisKey="ShipMethodID" OtherKey="ShipMethodID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.ShoppingCartItem" Member="Sales_ShoppingCartItem">
+    <Type Name="Sales_ShoppingCartItem">
+      <Column Name="ShoppingCartItemID" Member="ShoppingCartItemID" Storage="_ShoppingCartItemID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ShoppingCartID" Member="ShoppingCartID" Storage="_ShoppingCartID" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Member="Quantity" Storage="_Quantity" DbType="Int NOT NULL" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" />
+      <Column Name="DateCreated" Member="DateCreated" Storage="_DateCreated" DbType="DateTime NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ShoppingCartItem_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SpecialOffer" Member="Sales_SpecialOffer">
+    <Type Name="Sales_SpecialOffer">
+      <Column Name="SpecialOfferID" Member="SpecialOfferID" Storage="_SpecialOfferID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="Description" Member="Description" Storage="_Description" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DiscountPct" Member="DiscountPct" Storage="_DiscountPct" DbType="SmallMoney NOT NULL" />
+      <Column Name="Type" Member="Type" Storage="_Type" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Category" Member="Category" Storage="_Category" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Member="StartDate" Storage="_StartDate" DbType="DateTime NOT NULL" />
+      <Column Name="EndDate" Member="EndDate" Storage="_EndDate" DbType="DateTime NOT NULL" />
+      <Column Name="MinQty" Member="MinQty" Storage="_MinQty" DbType="Int NOT NULL" />
+      <Column Name="MaxQty" Member="MaxQty" Storage="_MaxQty" DbType="Int" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID" Member="Sales_SpecialOfferProduct" Storage="_Sales_SpecialOfferProduct" ThisKey="SpecialOfferID" OtherKey="SpecialOfferID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.SpecialOfferProduct" Member="Sales_SpecialOfferProduct">
+    <Type Name="Sales_SpecialOfferProduct">
+      <Column Name="SpecialOfferID" Member="SpecialOfferID" Storage="_SpecialOfferID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_SalesOrderDetail_SpecialOfferProduct_SpecialOfferIDProductID" Member="Sales_SalesOrderDetail" Storage="_Sales_SalesOrderDetail" ThisKey="SpecialOfferID,ProductID" OtherKey="SpecialOfferID,ProductID" DeleteRule="NO ACTION" />
+      <Association Name="FK_SpecialOfferProduct_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+      <Association Name="FK_SpecialOfferProduct_SpecialOffer_SpecialOfferID" Member="Sales_SpecialOffer" Storage="_Sales_SpecialOffer" ThisKey="SpecialOfferID" OtherKey="SpecialOfferID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Person.StateProvince" Member="Person_StateProvince">
+    <Type Name="Person_StateProvince">
+      <Column Name="StateProvinceID" Member="StateProvinceID" Storage="_StateProvinceID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="StateProvinceCode" Member="StateProvinceCode" Storage="_StateProvinceCode" DbType="NChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="CountryRegionCode" Member="CountryRegionCode" Storage="_CountryRegionCode" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="IsOnlyStateProvinceFlag" Member="IsOnlyStateProvinceFlag" Storage="_IsOnlyStateProvinceFlag" DbType="Bit NOT NULL" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TerritoryID" Member="TerritoryID" Storage="_TerritoryID" DbType="Int NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Address_StateProvince_StateProvinceID" Member="Person_Address" Storage="_Person_Address" ThisKey="StateProvinceID" OtherKey="StateProvinceID" DeleteRule="NO ACTION" />
+      <Association Name="FK_StateProvince_CountryRegion_CountryRegionCode" Member="Person_CountryRegion" Storage="_Person_CountryRegion" ThisKey="CountryRegionCode" OtherKey="CountryRegionCode" IsForeignKey="true" />
+      <Association Name="FK_StateProvince_SalesTerritory_TerritoryID" Member="Sales_SalesTerritory" Storage="_Sales_SalesTerritory" ThisKey="TerritoryID" OtherKey="TerritoryID" IsForeignKey="true" />
+      <Association Name="FK_SalesTaxRate_StateProvince_StateProvinceID" Member="Sales_SalesTaxRate" Storage="_Sales_SalesTaxRate" ThisKey="StateProvinceID" OtherKey="StateProvinceID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.Store" Member="Sales_Store">
+    <Type Name="Sales_Store">
+      <Column Name="CustomerID" Member="CustomerID" Storage="_CustomerID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SalesPersonID" Member="SalesPersonID" Storage="_SalesPersonID" DbType="Int" />
+      <Column Name="Demographics" Member="Demographics" Storage="_Demographics" DbType="Xml" UpdateCheck="Never" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_Store_Customer_CustomerID" Member="Sales_Customer" Storage="_Sales_Customer" ThisKey="CustomerID" OtherKey="CustomerID" IsForeignKey="true" />
+      <Association Name="FK_Store_SalesPerson_SalesPersonID" Member="Sales_SalesPerson" Storage="_Sales_SalesPerson" ThisKey="SalesPersonID" OtherKey="SalesPersonID" IsForeignKey="true" />
+      <Association Name="FK_StoreContact_Store_CustomerID" Member="Sales_StoreContact" Storage="_Sales_StoreContact" ThisKey="CustomerID" OtherKey="CustomerID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Sales.StoreContact" Member="Sales_StoreContact">
+    <Type Name="Sales_StoreContact">
+      <Column Name="CustomerID" Member="CustomerID" Storage="_CustomerID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ContactID" Member="ContactID" Storage="_ContactID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ContactTypeID" Member="ContactTypeID" Storage="_ContactTypeID" DbType="Int NOT NULL" />
+      <Column Name="rowguid" Member="Rowguid" Storage="_Rowguid" DbType="UniqueIdentifier NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_StoreContact_Contact_ContactID" Member="Person_Contact" Storage="_Person_Contact" ThisKey="ContactID" OtherKey="ContactID" IsForeignKey="true" />
+      <Association Name="FK_StoreContact_ContactType_ContactTypeID" Member="Person_ContactType" Storage="_Person_ContactType" ThisKey="ContactTypeID" OtherKey="ContactTypeID" IsForeignKey="true" />
+      <Association Name="FK_StoreContact_Store_CustomerID" Member="Sales_Store" Storage="_Sales_Store" ThisKey="CustomerID" OtherKey="CustomerID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.TransactionHistory" Member="Production_TransactionHistory">
+    <Type Name="Production_TransactionHistory">
+      <Column Name="TransactionID" Member="TransactionID" Storage="_TransactionID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" />
+      <Column Name="ReferenceOrderID" Member="ReferenceOrderID" Storage="_ReferenceOrderID" DbType="Int NOT NULL" />
+      <Column Name="ReferenceOrderLineID" Member="ReferenceOrderLineID" Storage="_ReferenceOrderLineID" DbType="Int NOT NULL" />
+      <Column Name="TransactionDate" Member="TransactionDate" Storage="_TransactionDate" DbType="DateTime NOT NULL" />
+      <Column Name="TransactionType" Member="TransactionType" Storage="_TransactionType" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Member="Quantity" Storage="_Quantity" DbType="Int NOT NULL" />
+      <Column Name="ActualCost" Member="ActualCost" Storage="_ActualCost" DbType="Money NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_TransactionHistory_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.TransactionHistoryArchive" Member="Production_TransactionHistoryArchive">
+    <Type Name="Production_TransactionHistoryArchive">
+      <Column Name="TransactionID" Member="TransactionID" Storage="_TransactionID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" />
+      <Column Name="ReferenceOrderID" Member="ReferenceOrderID" Storage="_ReferenceOrderID" DbType="Int NOT NULL" />
+      <Column Name="ReferenceOrderLineID" Member="ReferenceOrderLineID" Storage="_ReferenceOrderLineID" DbType="Int NOT NULL" />
+      <Column Name="TransactionDate" Member="TransactionDate" Storage="_TransactionDate" DbType="DateTime NOT NULL" />
+      <Column Name="TransactionType" Member="TransactionType" Storage="_TransactionType" DbType="NChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Member="Quantity" Storage="_Quantity" DbType="Int NOT NULL" />
+      <Column Name="ActualCost" Member="ActualCost" Storage="_ActualCost" DbType="Money NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+    </Type>
+  </Table>
+  <Table Name="Production.UnitMeasure" Member="Production_UnitMeasure">
+    <Type Name="Production_UnitMeasure">
+      <Column Name="UnitMeasureCode" Member="UnitMeasureCode" Storage="_UnitMeasureCode" DbType="NChar(3) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_BillOfMaterials_UnitMeasure_UnitMeasureCode" Member="Production_BillOfMaterials" Storage="_Production_BillOfMaterials" ThisKey="UnitMeasureCode" OtherKey="UnitMeasureCode" DeleteRule="NO ACTION" />
+      <Association Name="FK_Product_UnitMeasure_SizeUnitMeasureCode" Member="Production_Product" Storage="_Production_Product" ThisKey="UnitMeasureCode" OtherKey="SizeUnitMeasureCode" DeleteRule="NO ACTION" />
+      <Association Name="FK_Product_UnitMeasure_WeightUnitMeasureCode" Member="UnitMeasureCodeProduction_Product" Storage="_UnitMeasureCodeProduction_Product" ThisKey="UnitMeasureCode" OtherKey="WeightUnitMeasureCode" DeleteRule="NO ACTION" />
+      <Association Name="FK_ProductVendor_UnitMeasure_UnitMeasureCode" Member="Purchasing_ProductVendor" Storage="_Purchasing_ProductVendor" ThisKey="UnitMeasureCode" OtherKey="UnitMeasureCode" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.Vendor" Member="Purchasing_Vendor">
+    <Type Name="Purchasing_Vendor">
+      <Column Name="VendorID" Member="VendorID" Storage="_VendorID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="AccountNumber" Member="AccountNumber" Storage="_AccountNumber" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Member="Name" Storage="_Name" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreditRating" Member="CreditRating" Storage="_CreditRating" DbType="TinyInt NOT NULL" />
+      <Column Name="PreferredVendorStatus" Member="PreferredVendorStatus" Storage="_PreferredVendorStatus" DbType="Bit NOT NULL" />
+      <Column Name="ActiveFlag" Member="ActiveFlag" Storage="_ActiveFlag" DbType="Bit NOT NULL" />
+      <Column Name="PurchasingWebServiceURL" Member="PurchasingWebServiceURL" Storage="_PurchasingWebServiceURL" DbType="NVarChar(1024)" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_ProductVendor_Vendor_VendorID" Member="Purchasing_ProductVendor" Storage="_Purchasing_ProductVendor" ThisKey="VendorID" OtherKey="VendorID" DeleteRule="NO ACTION" />
+      <Association Name="FK_PurchaseOrderHeader_Vendor_VendorID" Member="Purchasing_PurchaseOrderHeader" Storage="_Purchasing_PurchaseOrderHeader" ThisKey="VendorID" OtherKey="VendorID" DeleteRule="NO ACTION" />
+      <Association Name="FK_VendorAddress_Vendor_VendorID" Member="Purchasing_VendorAddress" Storage="_Purchasing_VendorAddress" ThisKey="VendorID" OtherKey="VendorID" DeleteRule="NO ACTION" />
+      <Association Name="FK_VendorContact_Vendor_VendorID" Member="Purchasing_VendorContact" Storage="_Purchasing_VendorContact" ThisKey="VendorID" OtherKey="VendorID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.VendorAddress" Member="Purchasing_VendorAddress">
+    <Type Name="Purchasing_VendorAddress">
+      <Column Name="VendorID" Member="VendorID" Storage="_VendorID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="AddressID" Member="AddressID" Storage="_AddressID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="AddressTypeID" Member="AddressTypeID" Storage="_AddressTypeID" DbType="Int NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_VendorAddress_Address_AddressID" Member="Person_Address" Storage="_Person_Address" ThisKey="AddressID" OtherKey="AddressID" IsForeignKey="true" />
+      <Association Name="FK_VendorAddress_AddressType_AddressTypeID" Member="Person_AddressType" Storage="_Person_AddressType" ThisKey="AddressTypeID" OtherKey="AddressTypeID" IsForeignKey="true" />
+      <Association Name="FK_VendorAddress_Vendor_VendorID" Member="Purchasing_Vendor" Storage="_Purchasing_Vendor" ThisKey="VendorID" OtherKey="VendorID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Purchasing.VendorContact" Member="Purchasing_VendorContact">
+    <Type Name="Purchasing_VendorContact">
+      <Column Name="VendorID" Member="VendorID" Storage="_VendorID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ContactID" Member="ContactID" Storage="_ContactID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ContactTypeID" Member="ContactTypeID" Storage="_ContactTypeID" DbType="Int NOT NULL" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_VendorContact_Contact_ContactID" Member="Person_Contact" Storage="_Person_Contact" ThisKey="ContactID" OtherKey="ContactID" IsForeignKey="true" />
+      <Association Name="FK_VendorContact_ContactType_ContactTypeID" Member="Person_ContactType" Storage="_Person_ContactType" ThisKey="ContactTypeID" OtherKey="ContactTypeID" IsForeignKey="true" />
+      <Association Name="FK_VendorContact_Vendor_VendorID" Member="Purchasing_Vendor" Storage="_Purchasing_Vendor" ThisKey="VendorID" OtherKey="VendorID" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Production.WorkOrder" Member="Production_WorkOrder">
+    <Type Name="Production_WorkOrder">
+      <Column Name="WorkOrderID" Member="WorkOrderID" Storage="_WorkOrderID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" />
+      <Column Name="OrderQty" Member="OrderQty" Storage="_OrderQty" DbType="Int NOT NULL" />
+      <Column Name="StockedQty" Member="StockedQty" Storage="_StockedQty" DbType="Int NOT NULL" Expression="(isnull([OrderQty]-[ScrappedQty],(0)))" IsDbGenerated="true" UpdateCheck="Never" AutoSync="Always" />
+      <Column Name="ScrappedQty" Member="ScrappedQty" Storage="_ScrappedQty" DbType="SmallInt NOT NULL" />
+      <Column Name="StartDate" Member="StartDate" Storage="_StartDate" DbType="DateTime NOT NULL" />
+      <Column Name="EndDate" Member="EndDate" Storage="_EndDate" DbType="DateTime" />
+      <Column Name="DueDate" Member="DueDate" Storage="_DueDate" DbType="DateTime NOT NULL" />
+      <Column Name="ScrapReasonID" Member="ScrapReasonID" Storage="_ScrapReasonID" DbType="SmallInt" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_WorkOrder_Product_ProductID" Member="Production_Product" Storage="_Production_Product" ThisKey="ProductID" OtherKey="ProductID" IsForeignKey="true" />
+      <Association Name="FK_WorkOrder_ScrapReason_ScrapReasonID" Member="Production_ScrapReason" Storage="_Production_ScrapReason" ThisKey="ScrapReasonID" OtherKey="ScrapReasonID" IsForeignKey="true" />
+      <Association Name="FK_WorkOrderRouting_WorkOrder_WorkOrderID" Member="Production_WorkOrderRouting" Storage="_Production_WorkOrderRouting" ThisKey="WorkOrderID" OtherKey="WorkOrderID" DeleteRule="NO ACTION" />
+    </Type>
+  </Table>
+  <Table Name="Production.WorkOrderRouting" Member="Production_WorkOrderRouting">
+    <Type Name="Production_WorkOrderRouting">
+      <Column Name="WorkOrderID" Member="WorkOrderID" Storage="_WorkOrderID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="ProductID" Member="ProductID" Storage="_ProductID" DbType="Int NOT NULL" IsPrimaryKey="true" />
+      <Column Name="OperationSequence" Member="OperationSequence" Storage="_OperationSequence" DbType="SmallInt NOT NULL" IsPrimaryKey="true" />
+      <Column Name="LocationID" Member="LocationID" Storage="_LocationID" DbType="SmallInt NOT NULL" />
+      <Column Name="ScheduledStartDate" Member="ScheduledStartDate" Storage="_ScheduledStartDate" DbType="DateTime NOT NULL" />
+      <Column Name="ScheduledEndDate" Member="ScheduledEndDate" Storage="_ScheduledEndDate" DbType="DateTime NOT NULL" />
+      <Column Name="ActualStartDate" Member="ActualStartDate" Storage="_ActualStartDate" DbType="DateTime" />
+      <Column Name="ActualEndDate" Member="ActualEndDate" Storage="_ActualEndDate" DbType="DateTime" />
+      <Column Name="ActualResourceHrs" Member="ActualResourceHrs" Storage="_ActualResourceHrs" DbType="Decimal(9,4)" />
+      <Column Name="PlannedCost" Member="PlannedCost" Storage="_PlannedCost" DbType="Money NOT NULL" />
+      <Column Name="ActualCost" Member="ActualCost" Storage="_ActualCost" DbType="Money" />
+      <Column Name="ModifiedDate" Member="ModifiedDate" Storage="_ModifiedDate" DbType="DateTime NOT NULL" />
+      <Association Name="FK_WorkOrderRouting_Location_LocationID" Member="Production_Location" Storage="_Production_Location" ThisKey="LocationID" OtherKey="LocationID" IsForeignKey="true" />
+      <Association Name="FK_WorkOrderRouting_WorkOrder_WorkOrderID" Member="Production_WorkOrder" Storage="_Production_WorkOrder" ThisKey="WorkOrderID" OtherKey="WorkOrderID" IsForeignKey="true" />
+    </Type>
+  </Table>-->
+</Database>

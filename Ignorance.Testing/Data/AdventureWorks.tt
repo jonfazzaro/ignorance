@@ -28,7 +28,7 @@ WriteHeader(fileManager);
 
 foreach (var entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
 {
-    fileManager.StartNewFile(entity.Name + ".cs");
+    fileManager.StartNewFile(entity.Name + ".cs"); 
     BeginNamespace(namespaceName, code);
 #>
 <#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#><#=code.StringBefore(" : ", code.Escape(entity.BaseType))#>

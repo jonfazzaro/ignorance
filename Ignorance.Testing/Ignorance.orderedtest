@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<OrderedTest name="Ignorance" storage="c:\users\jfazzaro\documents\visual studio 2010\projects\ignorance\ignorance.testing\ignorance.orderedtest" id="6c492f21-9a14-4909-bfbb-07dcb12fda95" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<OrderedTest name="ignorance" storage="c:\users\jfazzaro\documents\visual studio 2010\projects\ignorance\ignorance.testing\ignorance.orderedtest" id="6c492f21-9a14-4909-bfbb-07dcb12fda95" continueAfterFailure="true" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Execution id="99937867-5b33-4687-a9be-67d77d1a4567" />
   <TestLinks>
     <TestLink id="55376024-56cd-e935-6cdb-9c0aa759a545" name="Load_EntityFramework_container" storage="bin\release\ignorance.testing.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <TestLink id="537e9d0f-489d-300c-923f-33d4a6a52387" name="added_entities_should_not_persist" storage="bin\release\ignorance.testing.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

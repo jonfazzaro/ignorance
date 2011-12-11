@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
-using System.Data.Entity;
-using System.Data.Linq;
+using System.Data.Linq.Mapping;
+using Ignorance.Testing.Data;
 using Ignorance.Testing.Data.EntityFramework;
 using Ignorance.Testing.Data.LinqToSql;
 using Microsoft.Practices.Unity;
@@ -32,13 +32,16 @@ namespace Ignorance.Testing.Tests
             string l2sConnectionString = 
                 ConfigurationManager.ConnectionStrings[l2sConnectionStringName].ConnectionString;
 
-            // TODO: get the map filename
+            // get the map
+            var map = XmlMappingSource.FromXml(Properties.Resources.AdventureWorks);
 
             var container = new UnityContainer()
-                .RegisterType<AdventureWorksDataContext>(
-                    new InjectionConstructor(l2sConnectionString /*, mappingSource*/))
+                .RegisterType<AdventureWorks>(
+                    new InjectionConstructor(l2sConnectionString, map))
                 .RegisterType<IWork, Ignorance.LinqToSql.Work>(
-                    new InjectionConstructor(typeof(AdventureWorksDataContext)))
+                    new InjectionConstructor(typeof(AdventureWorks)))
+                .RegisterType(typeof(IStore<Department>),
+                    typeof(Ignorance.Testing.Data.LinqToSql.DepartmentStore))
                 .RegisterType(typeof(IStore<>), typeof(Ignorance.LinqToSql.Store<>));
 
             Create.Container = (UnityContainer)container;

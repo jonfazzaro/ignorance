@@ -1,1 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Class="AdventureWorksDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AdventureWorks" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="HumanResources.Department" Member="HumanResources_Department">
+    <Type Name="HumanResources_Department">
+      <Column Name="DepartmentID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GroupName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ModifiedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

@@ -166,6 +166,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AdventureWorks.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Data\LinqToSql\DepartmentStore.cs" />
     <Compile Include="Data\Location.cs">
       <DependentUpon>AdventureWorks.tt</DependentUpon>
     </Compile>
@@ -300,6 +301,11 @@
     </Compile>
     <Compile Include="Domain\ContactService.cs" />
     <Compile Include="Domain\DepartmentService.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tests\UnityConfiguration.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -325,6 +331,10 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="App.Config" />
     <None Include="Data\EntityFramework\AdventureWorks.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -339,6 +349,7 @@
       <LastGenOutput>AdventureWorks.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <EmbeddedResource Include="Data\LinqToSql\AdventureWorks.map" />
     <None Include="Ignorance.orderedtest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
