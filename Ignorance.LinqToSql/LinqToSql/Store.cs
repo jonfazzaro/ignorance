@@ -28,7 +28,7 @@ namespace Ignorance.LinqToSql
         protected virtual T GetAttachedEntity(T entity)
         {
             var key = GetKey.Invoke(entity);
-            return this.Table.ToList().FirstOrDefault(p => GetKey.Invoke(p) == key);
+            return this.Table.ToList().SingleOrDefault(p => GetKey.Invoke(p).Equals(key));
         }
 
         public override void Remove(T entity)
@@ -38,7 +38,7 @@ namespace Ignorance.LinqToSql
                 this.Table.DeleteOnSubmit(original);
         }
 
-        protected abstract Func<T, object> GetKey { get; }
+        protected abstract Func<T, object> GetKey { get; } 
 
         public override void Attach(T entity)
         {
