@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace Ignorance.Testing.Data.LinqToSql
 {
@@ -6,9 +7,9 @@ namespace Ignorance.Testing.Data.LinqToSql
     {
         public DepartmentStore(Ignorance.LinqToSql.Work work = null) : base(work) { }
         
-        protected override Func<Department, object> GetKey
+        protected override Expression<Func<Department, object>> Key
         {
-            get { return (p) => p.DepartmentID; }
+            get { return p => p.DepartmentID; }
         }
     }
 }

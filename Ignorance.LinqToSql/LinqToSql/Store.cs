@@ -1,6 +1,6 @@
-﻿using System.Data.Linq;
+﻿using System;
+using System.Data.Linq;
 using System.Linq;
-using System;
 using System.Linq.Expressions;
 using AutoMapper;
 
@@ -24,11 +24,15 @@ namespace Ignorance.LinqToSql
         {
             get { return this.Context.GetTable<T>(); }
         }
-                
+
+        protected abstract Expression<Func<T, object>> Key { get; }
+
         protected virtual T GetAttachedEntity(T entity)
         {
-            var key = GetKey.Invoke(entity);
-            return this.Table.ToList().SingleOrDefault(p => GetKey.Invoke(p).Equals(key));
+            var key = Key.Compile().Invoke(entity);
+            Expression<Func<T, bool>> exp = (p) => Key.Compile().Invoke(p).Equals(key);
+
+            return this.Table.SingleOrDefault(exp.Compile());
         }
 
         public override void Remove(T entity)
@@ -37,14 +41,16 @@ namespace Ignorance.LinqToSql
             if (original != null)
                 this.Table.DeleteOnSubmit(original);
         }
-
-        protected abstract Func<T, object> GetKey { get; } 
-
+        
         public override void Attach(T entity)
         {
             var original = GetAttachedEntity(entity);
             if (original != null)
+            {
+                Mapper.CreateMap<T, T>().ForMember(Key, o => o.Ignore());
+                Mapper.AssertConfigurationIsValid();
                 Mapper.Map<T, T>(entity, original);
+            }
         }
 
         public override void Add(T entity)

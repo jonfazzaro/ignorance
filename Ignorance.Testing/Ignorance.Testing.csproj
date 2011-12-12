@@ -336,6 +336,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.Config" />
+    <None Include="Ignorance.LinqToSql.orderedtest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\EntityFramework\AdventureWorks.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AdventureWorks.Context.cs</LastGenOutput>
@@ -350,7 +353,7 @@
       <SubType>Designer</SubType>
     </None>
     <EmbeddedResource Include="Data\LinqToSql\AdventureWorks.map" />
-    <None Include="Ignorance.orderedtest" />
+    <None Include="Ignorance.EntityFramework.orderedtest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
